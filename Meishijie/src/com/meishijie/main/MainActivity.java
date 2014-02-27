@@ -1,9 +1,6 @@
 package com.meishijie.main;
 
-import com.meishijie.activities.SearchActivity;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,8 +14,7 @@ public class MainActivity extends Activity {
 
 
 	public void jump(View btn){
-		Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-		startActivity(intent);
+		
 	}
 
 }
