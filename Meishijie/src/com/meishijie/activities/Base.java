@@ -1,5 +1,7 @@
 package com.meishijie.activities;
 
-public class Base {
+import android.app.Activity;
+
+public class Base extends Activity{
 
 }
