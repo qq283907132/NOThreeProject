@@ -13,6 +13,7 @@ public class NetSearchFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		//加载网络搜索布局
 		View viewLayout = inflater.inflate(R.layout.search_net_fragment, container, false);
 		return viewLayout;
 	}

@@ -64,10 +64,12 @@ public class SearchActivity extends FragmentActivity {
 		public void onClick(View v) {
 
 			switch (v.getId()) {
+			//返回图标
 			case R.id.back:
 
 				break;
 
+			//网络搜索
 			case R.id.net_search:
 
 				break;
