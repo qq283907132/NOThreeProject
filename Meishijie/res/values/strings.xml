@@ -12,4 +12,13 @@
     <string name="local_search">本地搜索</string>
     <string name="desc">image</string>
 
+    <string name="tudou">土豆</string>
+    <string name="doufu">豆腐</string>
+    <string name="zhuxiaopai">猪小排</string>
+    <string name="jidan">鸡蛋</string>
+    <string name="niurou">牛肉</string>
+    <string name="qiezi">茄子</string>
+    <string name="nandu">按难度</string>
+    <string name="gongyi">按工艺</string>
+    <string name="kouwei">按口味</string>
 </resources>

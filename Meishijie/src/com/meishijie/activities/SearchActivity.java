@@ -28,7 +28,6 @@ public class SearchActivity extends FragmentActivity {
 
 		// 引用控件
 		findByIds();
-		
 		// 控件事件监听
 		setViewOnClickListener();
 	}
@@ -49,7 +48,7 @@ public class SearchActivity extends FragmentActivity {
 		search = (Button) findViewById(R.id.search);
 		// 清除图标
 		clear = (ImageView) findViewById(R.id.clear);
-
+		
 	}
 
 	// 给每一个控件设置监听
