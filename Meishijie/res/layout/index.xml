@@ -1,0 +1,230 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fffffcfa"
+    tools:context=".MainActivity" >
+
+    <com.meishijie.other.PullToRefreshView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffffcfa"
+        android:orientation="vertical" >
+
+        <com.meishijie.other.MyScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dip" >
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+                    </android.support.v4.view.ViewPager>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="#30000000"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="2"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:id="@+id/small_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="小标题"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/big_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="大标题"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal" >
+
+                            <View
+                                android:id="@+id/dot_0"
+                                android:layout_width="5dip"
+                                android:layout_height="5dip"
+                                android:layout_marginLeft="2dip"
+                                android:layout_marginRight="2dip"
+                                android:background="@drawable/dot_focused" />
+
+                            <View
+                                android:id="@+id/dot_1"
+                                android:layout_width="5dip"
+                                android:layout_height="5dip"
+                                android:layout_marginLeft="2dip"
+                                android:layout_marginRight="2dip"
+                                android:background="@drawable/dot_normal" />
+
+                            <View
+                                android:id="@+id/dot_2"
+                                android:layout_width="5dip"
+                                android:layout_height="5dip"
+                                android:layout_marginLeft="2dip"
+                                android:layout_marginRight="2dip"
+                                android:background="@drawable/dot_normal" />
+
+                            <View
+                                android:id="@+id/dot_3"
+                                android:layout_width="5dip"
+                                android:layout_height="5dip"
+                                android:layout_marginLeft="2dip"
+                                android:layout_marginRight="2dip"
+                                android:background="@drawable/dot_normal" />
+
+                            <View
+                                android:id="@+id/dot_4"
+                                android:layout_width="5dip"
+                                android:layout_height="5dip"
+                                android:layout_marginLeft="2dip"
+                                android:layout_marginRight="2dip"
+                                android:background="@drawable/dot_normal" />
+
+                            <View
+                                android:id="@+id/dot_5"
+                                android:layout_width="5dip"
+                                android:layout_height="5dip"
+                                android:layout_marginLeft="2dip"
+                                android:layout_marginRight="2dip"
+                                android:background="@drawable/dot_normal" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/main_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+        </com.meishijie.other.MyScrollView>
+    </com.meishijie.other.PullToRefreshView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/index_bottombar" >
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fadeScrollbars="false"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingRight="60.0dip" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="8.0dip"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/index_info_icon"
+                    android:gravity="center"
+                    android:text="个人信息"
+                    android:textColor="@drawable/white"
+                    android:textSize="10.0sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="8.0dip"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/index_collect_icon"
+                    android:gravity="center"
+                    android:text="我的收藏"
+                    android:textColor="@drawable/white"
+                    android:textSize="10.0sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="8.0dip"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/index_shop_icon"
+                    android:gravity="center"
+                    android:text="购物清单"
+                    android:textColor="@drawable/white"
+                    android:textSize="10.0sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="8.0dip"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/index_view_icon"
+                    android:gravity="center"
+                    android:text="最近浏览"
+                    android:textColor="@drawable/white"
+                    android:textSize="10.0sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="40dip"
+                    android:layout_marginTop="8.0dip"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/index_setting_icon"
+                    android:gravity="center"
+                    android:text="设置"
+                    android:textColor="@drawable/white"
+                    android:textSize="10.0sp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/search"
+        android:layout_width="54.0dip"
+        android:layout_height="60.0dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="2.0dip"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/searchbtn" />
+
+</RelativeLayout>
