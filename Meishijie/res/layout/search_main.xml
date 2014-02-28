@@ -80,7 +80,7 @@
 
        
         <fragment 
-            android:name="com.meishijie.search.SearchFragment"
+            android:name="com.meishijie.search.NetSearchFragment"
             android:id="@+id/net_search_fragment"
             android:layout_weight="1"
             android:layout_width="fill_parent"

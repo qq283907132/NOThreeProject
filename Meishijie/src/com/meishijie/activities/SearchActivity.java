@@ -28,6 +28,7 @@ public class SearchActivity extends FragmentActivity {
 
 		// 引用控件
 		findByIds();
+		
 		// 控件事件监听
 		setViewOnClickListener();
 	}
@@ -54,6 +55,7 @@ public class SearchActivity extends FragmentActivity {
 	// 给每一个控件设置监听
 	private void setViewOnClickListener() {
 		ViewOnClickListener viewOnClickListener = new ViewOnClickListener();
+		//返回
 		back.setOnClickListener(viewOnClickListener);
 	}
 
@@ -66,7 +68,7 @@ public class SearchActivity extends FragmentActivity {
 			switch (v.getId()) {
 			//返回图标
 			case R.id.back:
-
+				
 				break;
 
 			//网络搜索
