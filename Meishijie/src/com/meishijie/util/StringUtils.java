@@ -4,8 +4,22 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+/**
+ * @Title: StringUtils
+ * @Description: 数据库表中字段的加密与解密
+ * @Company: null
+ * @author  DHA
+ * @date    Feb 28, 2014
+ */
 public class StringUtils {
 	
+	/**
+	 * @Title: decodeMeishiString
+	 * @Description: 数据库字段的解密
+	 * @param paramInt 数据行ID
+	 * @param paramString 数据字段
+	 * @return
+	 */
 	public static String decodeMeishiString(int paramInt, String paramString) {
 		int i = paramInt % 6;
 		String str1 = paramString;
@@ -47,7 +61,13 @@ public class StringUtils {
 	}
 	
 	
-	
+	/**
+	 * @Title: encodeMeishiString
+	 * @Description: 数据的加密
+	 * @param paramInt 数据的ID
+	 * @param paramString 数据字段
+	 * @return
+	 */
 	public static String encodeMeishiString(int paramInt, String paramString) {
 		int i = paramInt % 6;
 		String str1 = null;
