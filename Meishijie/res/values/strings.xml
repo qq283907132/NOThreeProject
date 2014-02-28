@@ -6,9 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="search">搜索</string>
     <string name="search_menu">搜索菜谱、食材</string>
+    <string name="internet">网络</string>
+    <string name="local">本地</string>
     <string name="internet_search">网络搜索</string>
     <string name="local_search">本地搜索</string>
     <string name="desc">image</string>
-    <string name="btn_jump">跳转到搜索页面</string>
 
 </resources>
