@@ -25,7 +25,7 @@
         <provider 
             android:name="com.meishijie.data.DatabaseProvider" 
             android:authorities="com.meishijie.data.provider"
-            android:permission="false" />
+            android:permission="true" />
     </application>
 
 </manifest>
