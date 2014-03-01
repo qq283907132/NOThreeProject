@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -29,6 +30,7 @@ public class SplashActivity extends Activity{
 		//初始化数据
 		this.initData();
 		
+		startActivity(new Intent(this,SettingsActivity.class));
 	}
 	
 	/**
