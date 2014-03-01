@@ -9,7 +9,9 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 public class LogoActivity extends Activity {
+	@SuppressWarnings("unused")
 	private ImageView topImage;
+	@SuppressWarnings("unused")
 	private ImageView bottomImage;
 	
 	@Override

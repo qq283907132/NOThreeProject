@@ -10,19 +10,19 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.TextView;
-
+@SuppressWarnings("unused")
 public class PullToRefreshView extends LinearLayout {
 
-	private static final int TAP_TO_REFRESH = 1; // 初始状态
-	private static final int PULL_TO_REFRESH = 2; // 拉动刷新
-	private static final int RELEASE_TO_REFRESH = 3; // 释放刷新
-	private static final int REFRESHING = 4; // 正在刷新
-	public int mRefreshState;// 记录头当前状态
-	public int mfooterRefreshState;//记录尾当前状态
+	private static final int TAP_TO_REFRESH = 1; 
+	private static final int PULL_TO_REFRESH = 2; 
+	private static final int RELEASE_TO_REFRESH = 3; 
+	private static final int REFRESHING = 4; 
+	public int mRefreshState;
+	public int mfooterRefreshState;
 	public Scroller scroller;
 	public ScrollView sv;
-	private View refreshView;//头部视图
-	public View mfooterView;// 尾部视图
+	private View refreshView;
+	public View mfooterView;
 	public TextView mfooterViewText;
 	private ImageView refreshIndicatorView;
 	private int refreshTargetTop = -60;
@@ -34,12 +34,11 @@ public class PullToRefreshView extends LinearLayout {
 	//private RefreshListener refreshListener;
 
 	private int lastY;
-	// 动画效果
-	// 变为向下的箭头
+
 	private RotateAnimation mFlipAnimation;
-	// 变为逆向的箭头
+
 	private RotateAnimation mReverseFlipAnimation;
-	public int nowpull = -1;// 0为头部下拉，1为尾部上拉
+	public int nowpull = -1;
 
 	private boolean isRecord;
 	private Context mContext;
@@ -65,7 +64,7 @@ public class PullToRefreshView extends LinearLayout {
 		void onRefresh();
 	}
 	
-	//对外提供一个刷新监听 回调方法
+	//锟斤拷锟斤拷锟结供一锟斤拷刷锟铰硷拷锟斤拷 锟截碉拷锟斤拷锟斤拷
 	public void setOnRefreshListener(OnRefreshListener listener){
 		
 	}
