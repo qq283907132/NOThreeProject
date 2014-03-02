@@ -1,11 +1,13 @@
 package com.meishijie.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TableRow;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.meishijie.main.R;
 
@@ -24,11 +26,15 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 	private TableRow about_me_all_info;
 	private TableRow soft_recommend_info;
 	private TableRow invite_friends_download;
+	
+	private ImageView setting_actionbar_left_pic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.setting_layout);
+		
+		this.initActionBar();
 		
 		this.initView();
 		this.initClickListener();
@@ -65,13 +71,27 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 		this.soft_recommend_info.setOnClickListener(this);
 		this.invite_friends_download.setOnClickListener(this);
 	}
-
+	
+	private void initActionBar(){
+		ActionBar actionBar = getSupportActionBar();
+		
+		actionBar.setCustomView(R.layout.setting_actionbar);
+		
+		actionBar.setDisplayShowCustomEnabled(true);
+		
+		actionBar.setDisplayShowHomeEnabled(false);
+		
+		this.setting_actionbar_left_pic = (ImageView) findViewById(R.id.setting_actionbar_left_pic);
+		
+		this.setting_actionbar_left_pic.setOnClickListener(this);
+	}
+	
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
 		switch (id) {
 		case R.id.msj_account_login:
-			
+			startActivity(new Intent(this,LoginActivity.class));
 			break;
 		case R.id.binding_third_account:
 					
@@ -108,6 +128,8 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 			break;
 		case R.id.invite_friends_download:
 			
+			break;
+		case R.id.setting_actionbar_left_pic:
 			break;
 		default:
 			break;

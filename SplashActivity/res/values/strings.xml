@@ -26,5 +26,17 @@
 	<string name="recommend_soft">软件推荐</string>
 	<string name="invite_friends">邀请好友来下载</string>
 	<string name="cache_size">2.0MB</string>
+	<string name="setting_text">设置</string>
+	<string name="login_account">账号：</string>
+	<string name="login_pwd">密码：</string>
+	<string name="login_nick">昵称：</string>
+	<string name="pwd">密码</string>
+	<string name="login_email_nick">邮箱/昵称</string>
+	<string name="login_string">登录</string>
+	<string name="weibo_account_login">新浪微博账号登陆</string>
+	<string name="qq_login">QQ账号登陆</string>
+	<string name="renren_login">人人网账号登陆</string>
+	<string name="login_msj">登录美食杰</string>
+	<string name="reg_msj">注册美食杰</string>
 	
 </resources>

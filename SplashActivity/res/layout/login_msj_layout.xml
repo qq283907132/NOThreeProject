@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+	<!-- 表格布局 -->
+
+    <TableLayout
+        android:id="@+id/table_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip" >
+
+        <!-- 表格布局：第一行 -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:gravity="right"
+            android:background="@drawable/shape_top_corner_no_bottom_line" >
+
+            <TextView
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/login_account"
+                android:drawableLeft="@drawable/email_icon"
+                android:drawablePadding="3sp">
+            </TextView>
+
+            <EditText
+                android:id="@+id/msj_account"
+                android:inputType="text"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:text="@string/login_email_nick"
+                android:textSize="14sp"
+                android:textColor="@color/gray"/>
+        </TableRow>
+        <!-- 表格布局：第二行 -->
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip" 
+            android:gravity="right"
+            android:background="@drawable/shape_bottom_corner_no_top_line">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/login_pwd"
+                android:drawableLeft="@drawable/lock_icon"
+                android:drawablePadding="3sp"/>
+
+            <EditText
+                android:id="@+id/msj_pwd"
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:text="@string/pwd"
+                android:textColor="@color/gray"
+                android:textSize="13sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right" 
+                android:inputType="text"/>
+        </TableRow>
+    </TableLayout>
+    
+   <LinearLayout 
+       android:id="@+id/linear_layout"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/table_one"
+       android:layout_margin="10sp"
+       android:orientation="horizontal"
+       android:gravity="center_horizontal">
+       
+      <Button 
+          android:id="@+id/login_button"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/login"
+          android:text="@string/login_string"
+          android:textColor="@color/white"/>
+   </LinearLayout>
+   
+   <!-- 表格布局 -->
+
+    <TableLayout
+        android:layout_marginTop="10sp"
+        android:layout_below="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip" >
+
+        <!-- 表格布局：第一行 -->
+
+        <TableRow
+            android:id="@+id/weibo_login_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:background="@drawable/shape_top_corner_no_bottom_line" >
+
+            <ImageView
+                android:id="@+id/weibo_pic"
+                android:contentDescription="@+id/weibo_pic"
+                android:layout_weight="0"
+                android:layout_width="50sp"
+                android:layout_height="45sp"
+                android:layout_marginLeft="10sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/weibo_icon"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:gravity="left|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/weibo_account_login"
+                android:textSize="15sp"/>
+        </TableRow>
+        <!-- 表格布局：第二行 -->
+
+        <TableRow
+            android:id="@+id/qq_login_account"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:background="@drawable/shape_no_corner_without_bottom">
+
+           <ImageView
+                android:id="@+id/qq_pic"
+                android:contentDescription="@+id/qq_pic"
+                android:layout_weight="0"
+                android:layout_width="50sp"
+                android:layout_height="45sp"
+                android:layout_marginLeft="10sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/qq_icon"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:gravity="left|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/qq_login"
+                android:textSize="15sp"/>
+        </TableRow>
+        
+        <!-- 表格布局：第三行 -->
+
+        <TableRow
+            android:id="@+id/renren_login_account"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:background="@drawable/shape_bottom_corner_no_top_line">
+
+            <ImageView
+                android:id="@+id/renren_pic"
+                android:contentDescription="@+id/weibo_pic"
+                android:layout_weight="0"
+                android:layout_width="50sp"
+                android:layout_height="45sp"
+                android:layout_marginLeft="10sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/renren_icon"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:gravity="left|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/renren_login"
+                android:textSize="15sp"/>
+        </TableRow>
+    </TableLayout>
+    
+</RelativeLayout>

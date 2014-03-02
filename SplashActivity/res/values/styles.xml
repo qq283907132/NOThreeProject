@@ -16,5 +16,10 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+     <style name="PUBLIC_TITLE">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@drawable/white</item>
+    </style>
 
 </resources>
