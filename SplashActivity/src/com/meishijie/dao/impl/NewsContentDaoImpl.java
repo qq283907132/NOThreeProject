@@ -9,8 +9,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.meishijie.dao.INewsContentDao;
+import com.meishijie.data.DBHelper;
 import com.meishijie.entity.NewsContent;
 import com.meishijie.other.Contants;
 import com.meishijie.util.StringUtils;
@@ -18,10 +20,12 @@ import com.meishijie.util.StringUtils;
 public class NewsContentDaoImpl extends ContextWrapper implements INewsContentDao{
 	
 	private ContentResolver resolver;
+	private DBHelper dbHelper;
 	
 	public NewsContentDaoImpl(Context base) {
 		super(base);
 		this.resolver = getContentResolver();
+		this.dbHelper = new DBHelper(base);
 	}
 
 	@Override
@@ -114,5 +118,70 @@ public class NewsContentDaoImpl extends ContextWrapper implements INewsContentDa
 		}
 		return false;
 	}
+	
+	
 
+	/**
+	 * 查询前6个新闻内容
+	 */
+	public List<NewsContent> getPartNewsContent(String limit) {
+		List<NewsContent> lists = new ArrayList<NewsContent>();
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("newscontent", null, null, null, null, null, " id desc ", limit);
+		if(cursor.moveToFirst()){
+			for(int i = 0;i < cursor.getCount();i++){ 
+				cursor.moveToPosition(i);
+				System.out.println(cursor.getString(cursor.getColumnIndex("title")) + "*****************************8");
+				NewsContent content = new NewsContent();
+				this.setNewsContent(cursor, content);
+				lists.add(content);
+			}
+		}
+		cursor.close();
+		return lists;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public List<NewsContent> getPartNewsContentBySuperName(String superName,String limit) {
+		List<NewsContent> list = new ArrayList<NewsContent>();
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		/*String sql = "select id,title,titlepic,kouwei,gongyi,make_time,make_diff from newscontent where bclassname = ? limit 1,5";
+		String[] selectionArgs = {superName};
+		Cursor cursor = db.rawQuery(sql, selectionArgs);*/
+		String[] columns = {"id","title","titlepic","kouwei","gongyi","make_time","make_diff"};
+		
+		Cursor cursor = db.query("newscontent", columns, " bclassname = ?", new String[]{superName}, null, null, null, limit);
+		while(cursor.moveToNext()){
+			NewsContent contents = new NewsContent();
+			contents.setId(cursor.getInt(cursor.getColumnIndex("id")));
+			contents.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+			contents.setTitlepic(cursor.getString(cursor.getColumnIndex("titlepic")));
+			contents.setKouwei(cursor.getString(cursor.getColumnIndex("kouwei")));
+			contents.setGongyi(cursor.getString(cursor.getColumnIndex("gongyi")));
+			contents.setMake_diff(cursor.getString(cursor.getColumnIndex("make_diff")));
+			contents.setMake_time(cursor.getString(cursor.getColumnIndex("make_time")));
+			list.add(contents);
+		}
+		cursor.close();
+		return list;
+	}
+
+	@Override
+	public int getSuperSum(String superName) {
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("newscontent", null, " bclassname = ?", new String[]{superName}, null, null, null);
+		return cursor.getCount();
+	}
+
+	@Override
+	public int getSubSum(String subName) {
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("newscontent", null, " name = ?", new String[]{subName}, null, null, null);
+		return cursor.getCount();
+	}
+	
+	
 }

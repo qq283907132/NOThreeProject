@@ -5,7 +5,16 @@
     android:background="#FFFFFF"
     android:orientation="vertical" >
 
-    <!-- 表格布局 -->
+   <ScrollView 
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       
+       <LinearLayout 
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+           
+            <!-- 表格布局 -->
 
     <TableLayout
         android:layout_width="match_parent"
@@ -395,5 +404,8 @@
                 android:src="@drawable/small_arrow" />
         </TableRow>
     </TableLayout>
+    
+       </LinearLayout>
+   </ScrollView>
 
 </LinearLayout>

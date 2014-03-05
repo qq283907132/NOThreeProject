@@ -15,4 +15,10 @@ public interface INewsContentDao {
 	public List<NewsContent> getAllNewsContent();
 	public NewsContent getOneNewsContent(int id);
 	public boolean insertNewsContent(NewsContent newsContent);
+	public List<NewsContent> getPartNewsContent(String limit);
+	public int getSuperSum(String superName);
+	public int getSubSum(String subName);
+	public List<NewsContent> getPartNewsContentBySuperName(String superName,
+			String limit);
+	
 }

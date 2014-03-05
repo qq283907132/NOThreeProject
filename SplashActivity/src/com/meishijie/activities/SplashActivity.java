@@ -3,13 +3,18 @@ package com.meishijie.activities;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.meishijie.dao.INewsContentDao;
+import com.meishijie.dao.impl.NewsContentDaoImpl;
+import com.meishijie.entity.NewsContent;
 import com.meishijie.main.R;
+import com.meishijie.other.Contants;
 
 /**
  * @Title: SplashActivity
@@ -29,8 +34,7 @@ public class SplashActivity extends Activity{
 		
 		//初始化数据
 		this.initData();
-		
-		startActivity(new Intent(this,SettingsActivity.class));
+		startActivity(new Intent(this,IndexActivity.class));
 	}
 	
 	/**

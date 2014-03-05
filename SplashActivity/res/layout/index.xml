@@ -6,12 +6,14 @@
     tools:context=".MainActivity" >
 
     <com.meishijie.other.PullToRefreshView
+        android:id="@+id/refreshView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#fffffcfa"
         android:orientation="vertical" >
 
         <com.meishijie.other.MyScrollView
+            android:id="@+id/msv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -22,13 +24,26 @@
 
                 <FrameLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="200dip" >
+                    android:layout_height="180dip" 
+                    android:background="@drawable/content_nopic">
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/viewpager"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" >
                     </android.support.v4.view.ViewPager>
+
+                     <ProgressBar
+                         android:id="@id/pb"
+                         style="?android:attr/progressBarStyleHorizontal"
+                         android:layout_width="fill_parent"
+                         android:layout_height="5.0dip"
+                         android:layout_gravity="center_vertical"
+                         android:indeterminateOnly="false"
+                         android:max="100"
+                         android:progress="0"
+                         android:progressDrawable="@drawable/progressbar_rectangle"
+                         android:visibility="gone" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -49,6 +64,7 @@
                                 android:id="@+id/small_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textColor="@drawable/white"
                                 android:text="小标题"
                                 android:textSize="12sp" />
 
@@ -56,6 +72,7 @@
                                 android:id="@+id/big_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textColor="@drawable/white"
                                 android:text="大标题"
                                 android:textSize="20sp" />
                         </LinearLayout>

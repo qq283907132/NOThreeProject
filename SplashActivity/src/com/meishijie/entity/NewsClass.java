@@ -1,6 +1,8 @@
 package com.meishijie.entity;
 
-public class NewsClass {
+import java.io.Serializable;
+
+public class NewsClass implements Serializable{
 	private int id ;
 	private String bclassname;
 	private String name;

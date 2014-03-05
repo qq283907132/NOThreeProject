@@ -117,6 +117,7 @@ public class DatabaseProvider extends ContentProvider{
 		Log.i(TAG, "数据查询成功！");
 		return this.db.query(table_name, projection, selection, selectionArgs, null, null, sortOrder);
 	}
+	
 
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,

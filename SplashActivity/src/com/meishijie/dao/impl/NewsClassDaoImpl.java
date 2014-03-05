@@ -9,18 +9,22 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.meishijie.dao.INewsClassDao;
+import com.meishijie.data.DBHelper;
 import com.meishijie.entity.NewsClass;
+import com.meishijie.entity.NewsContent;
 import com.meishijie.other.Contants;
 
 public class NewsClassDaoImpl extends ContextWrapper implements INewsClassDao {
 	
 	private ContentResolver resolver;
-
+	private DBHelper dbHelper;
 	public NewsClassDaoImpl(Context base) {
 		super(base);
 		this.resolver = getContentResolver();
+		this.dbHelper = new DBHelper(base);
 	}
 
 	@Override
@@ -79,4 +83,39 @@ public class NewsClassDaoImpl extends ContextWrapper implements INewsClassDao {
 		return false;
 	}
 
+	@Override
+	public List<NewsClass> getSuperClassName() {
+		
+		List<NewsClass> lists = new ArrayList<NewsClass>();
+		String sql = "select distinct bclassname from newsclass";
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(sql, null);
+		while(cursor.moveToNext()){
+			NewsClass newsClass= new NewsClass();
+			String bclassname = cursor.getString(cursor.getColumnIndex("bclassname"));
+			if(bclassname!= null&&!bclassname.equals("")){
+				newsClass.setBclassname(cursor.getString(cursor.getColumnIndex("bclassname")));
+				lists.add(newsClass);
+			}
+		}
+		cursor.close();
+		return lists;
+	}
+
+	@Override
+	public List<NewsClass> getSubClassByBigName(String superName) {
+		List<NewsClass> lists = new ArrayList<NewsClass>();
+		String sql = "select distinct name from newsclass where bclassname = ?";
+		String[] selectionArgs = { superName };
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(sql, selectionArgs);
+		while (cursor.moveToNext()) {
+			NewsClass newsClass = new NewsClass();
+			newsClass.setName(cursor.getString(cursor.getColumnIndex("name")));
+			lists.add(newsClass);
+		}
+		cursor.close();
+		return lists;
+	}
+	
 }
