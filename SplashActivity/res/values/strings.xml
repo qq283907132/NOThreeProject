@@ -38,5 +38,6 @@
 	<string name="renren_login">人人网账号登陆</string>
 	<string name="login_msj">登录美食杰</string>
 	<string name="reg_msj">注册美食杰</string>
+	<string name="download_now">下载</string>
 	
 </resources>
