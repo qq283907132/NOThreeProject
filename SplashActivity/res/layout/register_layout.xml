@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    tools:ignore="UselessParent" >
+    
+	
+    <!-- 表格布局 -->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip" >
+
+        <!-- 表格布局：第一行 -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:gravity="right"
+            android:background="@drawable/shape_top_corner_no_bottom_line" >
+
+            <TextView
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/login_account"
+                android:drawableLeft="@drawable/email_icon"
+                android:drawablePadding="3sp">
+            </TextView>
+
+            <EditText
+                android:id="@+id/msj_register_account"
+                android:inputType="text"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:focusable="true"
+                android:gravity="left|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:textSize="14sp"
+                android:textColor="@color/gray"/>
+        </TableRow>
+        <!-- 表格布局：第二行 -->
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip" 
+            android:gravity="right"
+            android:background="@drawable/shape_no_corner_without_bottom">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/login_pwd"
+                android:drawableLeft="@drawable/lock_icon"
+                android:drawablePadding="3sp"/>
+
+            <EditText
+                android:id="@+id/msj_register_pwd"
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:textColor="@color/gray"
+                android:textSize="13sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right" 
+                android:inputType="text"/>
+        </TableRow>
+        
+         <!-- 表格布局：第三行 -->
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip" 
+            android:gravity="right"
+            android:background="@drawable/shape_bottom_corner_no_top_line">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/login_nick"
+                android:drawableLeft="@drawable/nick_icon"
+                android:drawablePadding="3sp"/>
+
+            <EditText
+                android:id="@+id/msj_register_nick"
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:textColor="@color/gray"
+                android:textSize="13sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right" 
+                android:inputType="text"/>
+        </TableRow>
+        
+    </TableLayout>
+    
+</RelativeLayout>
