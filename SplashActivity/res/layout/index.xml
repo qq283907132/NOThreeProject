@@ -15,7 +15,9 @@
         <com.meishijie.other.MyScrollView
             android:id="@+id/msv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" 
+            android:fadingEdge="none"
+            android:scrollbars="none" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -65,6 +67,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@drawable/white"
+                                android:maxLines="1"
                                 android:text="小标题"
                                 android:textSize="12sp" />
 
