@@ -5,10 +5,17 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import cn.jpush.android.api.BasicPushNotificationBuilder;
+import cn.jpush.android.api.JPushInterface;
+import cn.sharesdk.framework.ShareSDK;
 
+import com.meishijie.dao.INewsContentDao;
+import com.meishijie.dao.impl.NewsContentDaoImpl;
+import com.meishijie.entity.NewsContent;
 import com.meishijie.main.R;
 
 /**
@@ -27,10 +34,25 @@ public class SplashActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		JPushInterface.init(getApplicationContext());
+		
+		this.setStyleBasic();
+		
+		ShareSDK.initSDK(this);
+		
 		//初始化数据
 		this.initData();
 		
 		startActivity(new Intent(this,SettingsActivity.class));
+	}
+	
+	
+	private void setStyleBasic(){
+		BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(getApplicationContext());
+		builder.statusBarDrawable = R.drawable.icon;
+		builder.notificationFlags = Notification.FLAG_AUTO_CANCEL;  //设置为点击后自动消失
+		builder.notificationDefaults = Notification.DEFAULT_SOUND;  //设置为铃声（ Notification.DEFAULT_SOUND）或者震动（ Notification.DEFAULT_VIBRATE）  
+		JPushInterface.setPushNotificationBuilder(1, builder);
 	}
 	
 	/**

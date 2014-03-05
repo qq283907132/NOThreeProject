@@ -1,11 +1,15 @@
 package com.meishijie.activities;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TableRow;
+import cn.jpush.android.api.BasicPushNotificationBuilder;
+import cn.jpush.android.api.JPushInterface;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -33,7 +37,6 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.setting_layout);
-		
 		this.initActionBar();
 		
 		this.initView();
@@ -106,7 +109,7 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 			
 			break;
 		case R.id.data_packet_download:
-			
+			startActivity(new Intent(this,DownloadDataActivity.class));
 			break;
 		case R.id.not_load_data_in_two_three:
 			
@@ -127,7 +130,12 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 			
 			break;
 		case R.id.invite_friends_download:
-			
+			OnekeyShare oks = new OnekeyShare();
+			// 分享时Notification的图标和文字
+			oks.setNotification(R.drawable.icon, 
+			getString(R.string.app_name));
+			oks.setSilent(true);
+			oks.show(this);
 			break;
 		case R.id.setting_actionbar_left_pic:
 			break;

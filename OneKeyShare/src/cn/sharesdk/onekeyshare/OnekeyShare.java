@@ -8,12 +8,14 @@
 
 package cn.sharesdk.onekeyshare;
 
-import static cn.sharesdk.framework.utils.R.getBitmapRes;
 import static cn.sharesdk.framework.utils.R.getStringRes;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import android.app.ActionBar;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,23 +24,21 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.Button;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.FrameLayout.LayoutParams;
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
@@ -60,8 +60,6 @@ public class OnekeyShare extends FakeActivity implements
 	private FrameLayout flPage;
 	// 宫格列表
 	private PlatformGridView grid;
-	// 取消按钮
-	private Button btnCancel;
 	// 滑上来的动画
 	private Animation animShow;
 	// 滑下去的动画
@@ -230,6 +228,7 @@ public class OnekeyShare extends FakeActivity implements
 	}
 
 	public void onCreate() {
+		
 		// 显示方式是由platform和silent两个字段控制的
 		// 如果platform设置了，则无须显示九宫格，否则都会显示；
 		// 如果silent为true，表示不进入编辑页面，否则会进入。
@@ -282,7 +281,6 @@ public class OnekeyShare extends FakeActivity implements
 		grid.setData(copy, silent);
 		grid.setCustomerLogos(customers);
 		grid.setParent(this);
-		btnCancel.setOnClickListener(this);
 
 		// 显示列表
 		flPage.clearAnimation();
@@ -303,10 +301,7 @@ public class OnekeyShare extends FakeActivity implements
 			}
 		};
 		llPage.setOrientation(LinearLayout.VERTICAL);
-		int resId = getBitmapRes(getContext(), "share_vp_back");
-		if (resId > 0) {
-			llPage.setBackgroundResource(resId);
-		}
+		llPage.setBackgroundColor(getContext().getResources().getColor(android.R.color.white));
 		FrameLayout.LayoutParams lpLl = new FrameLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		lpLl.gravity = Gravity.BOTTOM;
@@ -320,25 +315,6 @@ public class OnekeyShare extends FakeActivity implements
 		grid.setLayoutParams(lpWg);
 		llPage.addView(grid);
 
-		// 取消按钮
-		btnCancel = new Button(getContext());
-		btnCancel.setTextColor(0xffffffff);
-		btnCancel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-		resId = getStringRes(getContext(), "cancel");
-		if (resId > 0) {
-			btnCancel.setText(resId);
-		}
-		btnCancel.setPadding(0, 0, 0, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 5));
-		resId = getBitmapRes(getContext(), "btn_cancel_back");
-		if (resId > 0) {
-			btnCancel.setBackgroundResource(resId);
-		}
-		LinearLayout.LayoutParams lpBtn = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, cn.sharesdk.framework.utils.R.dipToPx(getContext(), 45));
-		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 10);
-		lpBtn.setMargins(dp_10, dp_10, dp_10, dp_10);
-		btnCancel.setLayoutParams(lpBtn);
-		llPage.addView(btnCancel);
 	}
 
 	private void initAnim() {
@@ -358,7 +334,7 @@ public class OnekeyShare extends FakeActivity implements
 	}
 
 	public void onClick(View v) {
-		if (v.equals(flPage) || v.equals(btnCancel)) {
+		if (v.equals(flPage)) {
 			canceled = true;
 			finish();
 		}

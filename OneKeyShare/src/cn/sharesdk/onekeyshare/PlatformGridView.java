@@ -15,11 +15,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import m.framework.ui.widget.viewpager.ViewPagerAdapter;
 import m.framework.ui.widget.viewpager.ViewPagerClassic;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Handler.Callback;
 import android.os.Message;
@@ -99,7 +102,7 @@ public class PlatformGridView extends LinearLayout implements
 		float scrH = cn.sharesdk.framework.utils.R.getScreenHeight(getContext());
 		float whR = scrW / scrH;
 		if (whR < 0.6) {
-			COLUMN_PER_LINE = 3;
+			COLUMN_PER_LINE = 4;
 			LINE_PER_PAGE = 3;
 		} else if (whR < 0.75) {
 			COLUMN_PER_LINE = 3;
@@ -407,7 +410,8 @@ public class PlatformGridView extends LinearLayout implements
 				listener = ((CustomerLogo) beans[position]).listener;
 			}
 
-			LinearLayout ll = new LinearLayout(context);
+			//LinearLayout ll = new LinearLayout(context);
+			LinearLayout ll = new CustomView(context,position);
 			ll.setOrientation(LinearLayout.VERTICAL);
 
 			ImageView iv = new ImageView(context);
@@ -423,8 +427,8 @@ public class PlatformGridView extends LinearLayout implements
 			ll.addView(iv);
 
 			TextView tv = new TextView(context);
-			tv.setTextColor(0xffffffff);
-			tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
+			tv.setTextColor(0xffC5C5C5);
+			tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
 			tv.setSingleLine();
 			tv.setIncludeFontPadding(false);
 			LinearLayout.LayoutParams lpTv = new LinearLayout.LayoutParams(
@@ -438,6 +442,67 @@ public class PlatformGridView extends LinearLayout implements
 			ll.setOnClickListener(listener);
 
 			return ll;
+		}
+		
+		
+		class CustomView extends LinearLayout{
+			
+			private int position ;
+			
+			public CustomView(Context context,int position) {
+				super(context);
+				this.position = position;
+			}
+			
+			@Override
+		    protected void dispatchDraw(Canvas canvas){
+		        super.dispatchDraw(canvas);
+		        
+				Paint paint = new Paint();
+				
+				if(position >= 0 && position < 4){
+					
+					paint.setColor(getContext().getResources().getColor(R.color.divide));
+					
+					canvas.drawLine(0, this.getHeight() - 1, this.getWidth() - 1, this.getHeight() - 1, paint);
+					
+					if(position != 3){
+						canvas.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, this.getHeight() - 1, paint);
+					}else{
+						canvas.drawLine(0, 0, 0, this.getHeight() - 1, paint);
+					}
+				}
+				
+				if(position >= 4 && position < 8){
+					
+					paint.setColor(getContext().getResources().getColor(R.color.share_font));
+					
+					canvas.drawLine(0, this.getHeight() - 1, this.getWidth() - 1, this.getHeight() - 1, paint);
+					
+					paint.setColor(getContext().getResources().getColor(R.color.divide));
+					if(position != 7){
+						canvas.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, this.getHeight() - 1, paint);
+					}else{
+						canvas.drawLine(0, 0, 0, this.getHeight() - 1, paint);
+					}
+				}
+				
+				if(position == 8){
+					
+					paint.setColor(getContext().getResources().getColor(R.color.divide));
+					
+					canvas.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, this.getHeight() - 1, paint);
+				}
+				
+				//上
+				//canvas.drawLine(0, 0, this.getWidth() - 1, 0, paint); 
+				//左
+				//canvas.drawLine(0, 0, 0, this.getHeight() - 1, paint);   
+				//右
+				//canvas.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, this.getHeight() - 1, paint);   
+				//下
+				//canvas.drawLine(0, this.getHeight() - 1, this.getWidth() - 1, this.getHeight() - 1, paint);
+		    }
 		}
 
 		private Bitmap getIcon(Platform plat) {
