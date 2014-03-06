@@ -34,6 +34,7 @@ public class SplashActivity extends Activity{
 		
 		//初始化数据
 		this.initData();
+		
 		startActivity(new Intent(this,IndexActivity.class));
 	}
 	
