@@ -69,13 +69,13 @@
             android:orientation="horizontal">
             
             <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40.dip"
+                android:layout_height="40.dip"
                 android:text="全部"> 
             </TextView>
             <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40.dip"
+                android:layout_height="40.dip"
                 android:background="@drawable/red_fill"
                 android:text="热菜"> 
             </TextView>
