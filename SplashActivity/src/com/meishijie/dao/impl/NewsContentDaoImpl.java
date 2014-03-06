@@ -51,6 +51,7 @@ public class NewsContentDaoImpl extends ContextWrapper implements INewsContentDa
 		if(cursor.moveToFirst()){
 			this.setNewsContent(cursor, content);
 		}
+		
 		cursor.close();
 		return content;
 	}
@@ -137,6 +138,7 @@ public class NewsContentDaoImpl extends ContextWrapper implements INewsContentDa
 				lists.add(content);
 			}
 		}
+		db.close();
 		cursor.close();
 		return lists;
 	}
@@ -165,6 +167,7 @@ public class NewsContentDaoImpl extends ContextWrapper implements INewsContentDa
 			contents.setMake_time(cursor.getString(cursor.getColumnIndex("make_time")));
 			list.add(contents);
 		}
+		db.close();
 		cursor.close();
 		return list;
 	}
@@ -172,15 +175,22 @@ public class NewsContentDaoImpl extends ContextWrapper implements INewsContentDa
 	@Override
 	public int getSuperSum(String superName) {
 		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		
 		Cursor cursor = db.query("newscontent", null, " bclassname = ?", new String[]{superName}, null, null, null);
-		return cursor.getCount();
+		int count = cursor.getCount();
+		db.close();
+		cursor.close();
+		return count;
 	}
 
 	@Override
 	public int getSubSum(String subName) {
 		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
 		Cursor cursor = db.query("newscontent", null, " name = ?", new String[]{subName}, null, null, null);
-		return cursor.getCount();
+		int count = cursor.getCount();
+		db.close();
+		cursor.close();
+		return count;
 	}
 	
 	
