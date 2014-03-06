@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/local_search_replace"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12.0dip"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/local_nd"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="6dip"
+        android:layout_height="95.0dip" >
+
+        <ImageView
+            android:id="@+id/iv_shicai1"
+            android:layout_width="wrap_content"
+            android:layout_height="95.0dip"
+            android:contentDescription="@string/desc"
+            android:background="@drawable/nd_184" />
+
+        <TextView
+            android:id="@+id/tv_search_title1"
+            android:layout_width="120dip"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/search_topbar"
+            android:gravity="center_horizontal"
+            android:text="@string/nandu" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/local_gy"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="6dip"
+        android:layout_height="95.0dip" >
+
+        <ImageView
+            android:id="@+id/iv_shicai2"
+            android:layout_width="wrap_content"
+            android:layout_height="95.0dip"
+            android:contentDescription="@string/desc"
+            android:background="@drawable/gy_184" />
+
+        <TextView
+            android:id="@+id/tv_search_title2"
+            android:layout_width="120dip"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/search_topbar"
+            android:gravity="center_horizontal"
+            android:text="@string/gongyi" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/local_kw"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="95.0dip" >
+
+        <ImageView
+            android:id="@+id/iv_shicai3"
+            android:layout_width="wrap_content"
+            android:layout_height="95.0dip"
+            android:contentDescription="@string/desc"
+            android:background="@drawable/kw_184" />
+
+        <TextView
+            android:id="@+id/tv_search_title3"
+            android:layout_width="120dip"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/search_topbar"
+            android:gravity="center_horizontal"
+            android:text="@string/kouwei" />
+    </RelativeLayout>
+</LinearLayout>

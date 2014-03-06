@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.meishijie.dao.INewsContentDao;
 import com.meishijie.data.DBHelper;
@@ -193,5 +194,136 @@ public class NewsContentDaoImpl extends ContextWrapper implements INewsContentDa
 		return count;
 	}
 	
+
+	/**
+	 * 根据传进来的制作难度关键字查询数据
+	 */
+	@Override
+	public List<NewsContent> getAllNewsByString(String ndKeys, String limit) {
+		List<NewsContent> contentList = new ArrayList<NewsContent>();
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("newscontent", null, " make_diff LIKE ? ",
+				new String[] { "%" + ndKeys + "%" }, null, null, null, limit);
+		if (cursor.moveToFirst()) {
+			for (int i = 0; i < cursor.getCount(); i++) {
+				cursor.moveToPosition(i);
+				NewsContent content = new NewsContent();
+				this.setNewsContent(cursor, content);
+				contentList.add(content);
+			}
+		}
+		cursor.close();
+		db.close();
+		return contentList;
+	}
+
+	/**
+	 * 根据传进来的工艺关键字查询数据
+	 */
+	@Override
+	public List<NewsContent> getAllNewsByGongYi(String gyKeys, String limit) {
+		List<NewsContent> contentList = new ArrayList<NewsContent>();
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("newscontent", null, " gongyi LIKE ? ",
+				new String[] { "%" + gyKeys + "%" }, null, null, null, limit);
+		if (cursor.moveToFirst()) {
+			for (int i = 0; i < cursor.getCount(); i++) {
+				cursor.moveToPosition(i);
+				NewsContent content = new NewsContent();
+				this.setNewsContent(cursor, content);
+				contentList.add(content);
+			}
+		}
+		cursor.close();
+		db.close();
+		return contentList;
+	}
+
+	/**
+	 * 根据传进来的口味关键字查询数据
+	 */
+	@Override
+	public List<NewsContent> getAllNewsByKouwei(String kwKeys, String limit) {
+		List<NewsContent> contentList = new ArrayList<NewsContent>();
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("newscontent", null, " kouwei LIKE ? ",
+				new String[] { "%" + kwKeys + "%" }, null, null, null, limit);
+		if (cursor.moveToFirst()) {
+			for (int i = 0; i < cursor.getCount(); i++) {
+				cursor.moveToPosition(i);
+				NewsContent content = new NewsContent();
+				this.setNewsContent(cursor, content);
+				contentList.add(content);
+			}
+		}
+		cursor.close();
+		db.close();
+		return contentList;
+	}
+
+	/**
+	 * 模糊查询
+	 */
+	@Override
+	public List<NewsContent> getAllNewsByTitle(String title, String limit) {
+		List<NewsContent> contentList = new ArrayList<NewsContent>();
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("newscontent", null, " title LIKE ? ",
+				new String[] { "%" + title + "%" }, null, null, null, limit);
+		if (cursor != null) {
+			Log.i("food", "++++++++++++++++++++++++++++++++");
+			Log.i("food", "cursor count:" + cursor.getCount());
+		} else {
+			Log.i("food", "***************************");
+		}
+		if (cursor.moveToFirst()) {
+			for (int i = 0; i < cursor.getCount(); i++) {
+				cursor.moveToPosition(i);
+				NewsContent content = new NewsContent();
+				this.setNewsContent(cursor, content);
+				contentList.add(content);
+			}
+		}
+		cursor.close();
+		db.close();
+		return contentList;
+	}
 	
+	@Override
+	public int getCountByDataNd(String str) {
+	
+		// Cursor cursor =
+		// resolver.query(Contants.URI_NEWS_CONTENT," title LIKE ? ", new
+		// String[]{"%" + str + "%"}, null, " id asc");
+		Cursor cursor = resolver.query(Contants.URI_NEWS_CONTENT, null,
+				" make_diff LIKE ? ", new String[] { "%" + str + "%" }, null);
+		cursor.close();
+		return cursor.getCount();
+		
+	}
+
+	@Override
+	public int getCountByDataGy(String strgy) {
+		Cursor cursor = resolver.query(Contants.URI_NEWS_CONTENT, null,
+				" gongyi LIKE ? ", new String[] { "%" + strgy + "%" }, null);
+		cursor.close();
+		return cursor.getCount();
+	}
+
+	@Override
+	public int getCountByDataKw(String strkw) {
+		Cursor cursor = resolver.query(Contants.URI_NEWS_CONTENT, null,
+				" kouwei LIKE ? ", new String[] { "%" + strkw + "%" }, null);
+		cursor.close();
+		return cursor.getCount();
+	}
+
+	@Override
+	public int getCountByDataKey(String keys) {
+		Cursor cursor = resolver.query(Contants.URI_NEWS_CONTENT, null,
+				" title LIKE ? ", new String[] { "%" + keys + "%" }, null);
+		cursor.close();
+		return cursor.getCount();
+	}
+
 }

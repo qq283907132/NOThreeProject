@@ -1,21 +1,8 @@
 package com.meishijie.adapter;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import com.meishijie.entity.NewsContent;
-import com.meishijie.main.R;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +11,17 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.meishijie.entity.NewsContent;
+import com.meishijie.main.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 public class FoodAdapter extends BaseAdapter {
 	private List<NewsContent> foodList;
 	private LayoutInflater inflater;
-	
-	public FoodAdapter(Context context){
+	private ImageLoader imageLoader;
+	public FoodAdapter(Context context,ImageLoader imageLoader){
 		inflater = LayoutInflater.from(context);
+		this.imageLoader = imageLoader;
 	}
 	
 	public void setData(List<NewsContent> foodList){
@@ -76,6 +68,7 @@ public class FoodAdapter extends BaseAdapter {
 		craft.setText(newsContent.getGongyi());
 		diff.setText(newsContent.getMake_diff());
 		time.setText(newsContent.getMake_time());
+		this.imageLoader.displayImage(newsContent.getTitlepic(), titlepic);
 		
 		//new LoadImageTask(titlepic,picBar).execute(newsContent.getTitlepic());
 		

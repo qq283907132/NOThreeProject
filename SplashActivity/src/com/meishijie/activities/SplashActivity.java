@@ -3,18 +3,20 @@ package com.meishijie.activities;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import cn.jpush.android.api.JPushInterface;
+import cn.sharesdk.framework.ShareSDK;
 
-import com.meishijie.dao.INewsContentDao;
-import com.meishijie.dao.impl.NewsContentDaoImpl;
-import com.meishijie.entity.NewsContent;
 import com.meishijie.main.R;
-import com.meishijie.other.Contants;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 /**
  * @Title: SplashActivity
@@ -31,12 +33,35 @@ public class SplashActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+			
 		//初始化数据
 		this.initData();
 		
+		JPushInterface.init(this);
+		
+		ShareSDK.initSDK(this);
+		
+		initImageLoader(getApplicationContext());
+		
 		startActivity(new Intent(this,IndexActivity.class));
 	}
+	
+	 /**初始化图片加载类配置信息**/
+    public static void initImageLoader(Context context) {
+        // This configuration tuning is custom. You can tune every option, you may tune some of them,
+        // or you can create default configuration by
+        //  ImageLoaderConfiguration.createDefault(this);
+        // method.
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+            .threadPriority(Thread.NORM_PRIORITY - 2)//加载图片的线程数
+            .denyCacheImageMultipleSizesInMemory() //解码图像的大尺寸将在内存中缓存先前解码图像的小尺寸。
+            .discCacheFileNameGenerator(new Md5FileNameGenerator())//设置磁盘缓存文件名称
+            .tasksProcessingOrder(QueueProcessingType.LIFO)//设置加载显示图片队列进程
+            .writeDebugLogs() // Remove for release app
+            .build();
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config);
+    }
 	
 	/**
 	 * @Title: initData

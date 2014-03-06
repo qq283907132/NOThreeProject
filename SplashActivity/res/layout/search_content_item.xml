@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:background="#fffffcfa">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/item"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="10.0dip" >
+
+            <RelativeLayout
+                android:layout_width="75.0dip"
+                android:layout_height="75.0dip" >
+
+                <ImageView
+                    android:id="@+id/pic"
+                    android:layout_width="75.0dip"
+                    android:layout_height="75.0dip"
+                    android:background="@drawable/nopic"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitXY" />
+
+                <ProgressBar
+                    android:id="@+id/pb"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="5.0dip"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5.0dip"
+                    android:indeterminateOnly="false"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/progressbar_rectangle" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="75.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="红烧土豆"
+                        android:textColor="#ffc90000"
+                        android:textSize="20.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bot_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.3"
+                    android:gravity="top" >
+
+                    <LinearLayout
+                        android:id="@+id/bot_left"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="口味："
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+
+                        <TextView
+                            android:id="@+id/tv_kouwei_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:singleLine="true"
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bot_right"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="工艺："
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+
+                        <TextView
+                            android:id="@+id/tv_gongyi_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:singleLine="true"
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/top_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.3"
+                    android:gravity="top" >
+
+                    <LinearLayout
+                        android:id="@+id/top_left"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="难度："
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+
+                        <TextView
+                            android:id="@+id/tv_nandu_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:singleLine="true"
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/top_right"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="时间："
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+
+                        <TextView
+                            android:id="@+id/tv_shijian_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:singleLine="true"
+                            android:textColor="@drawable/gray"
+                            android:textSize="13.0sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:background="@drawable/line" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:visibility="invisible" />
+
+</RelativeLayout>

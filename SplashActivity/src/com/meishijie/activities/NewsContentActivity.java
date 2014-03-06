@@ -9,6 +9,7 @@ import com.meishijie.dao.impl.NewsContentDaoImpl;
 import com.meishijie.entity.NewsClass;
 import com.meishijie.entity.NewsContent;
 import com.meishijie.main.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,10 +49,27 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 	
 	private String[] str = null;
 	
+	private ImageLoader imageLoader;
+	
+	private String[] data = new String[]{
+			"http://images.meishij.net/p/20100719/bce3548403235bf27e56589db1d4cf73.jpg",
+			"http://images.meishij.net/p/20100712/c719d7cac3df04dd3bc3103f7349e592.jpg",
+			"http://images.meishij.net/p/20110127/bc28e90362678cf5f259b3491252bf43_150x150.jpg",
+			"http://images.meishij.net/p/20110926/ddd57c81ac0c30740d7b4869742dc8b5_150x150.jpg",
+			"http://images.meishij.net/p/20100925/7b0863da51b668d8f41fdd977883bc47.jpg",
+			"http://images.meishij.net/p/20100915/7bf9281871985d19c3580cf955675204.jpg",
+			"http://images.meishij.net/p/20100901/b223d8d24aa3f48de5e4ead1f035d3e9.jpg",
+			"http://images.meishij.net/p/20101102/fc8ec9f0ba172e0b9097bd8b6592d57c.jpg",
+			"http://images.meishij.net/p/20100712/14b2b006b7bccb16036d2f6be7a6caac.jpg",
+			"http://images.meishij.net/p/20100329/d9c7d8723e322d069a24435a950e4fce.jpg",
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fooder_menu);
+		
+		this.imageLoader = ImageLoader.getInstance();
 		
 		str = new String[]{"菜系是在取材、刀工、调制等方面,有鲜明地方特色具备一定规模体系的菜肴流派。",
 				"全球各地都有迥异的饮食文化,和不同的食风食俗,体现了人类文明的多样性化。",
@@ -78,13 +97,14 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 		listView = (ListView) findViewById(R.id.fooder_menu_list);
 		header = LayoutInflater.from(this).inflate(R.layout.list_header,
 				listView, false);
+		imageView = (ImageView) header.findViewById(R.id.pic);
 		desc = (TextView) header.findViewById(R.id.desc);
 		listView.addHeaderView(header);
 		footer = LayoutInflater.from(this).inflate(R.layout.list_more,
 				listView, false);
 		listView.addFooterView(footer);
 		
-		adapter = new FoodAdapter(this);
+		adapter = new FoodAdapter(this,this.imageLoader);
 		
 		contentDao = new NewsContentDaoImpl(this);
 		initView(bclassname, classList);
@@ -106,33 +126,43 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 		if ("中华菜系".equals(bclassname)) {
 			Log.i("jky",str[0] );
 			desc.setText(str[0]);
+			this.imageLoader.displayImage(this.data[0], imageView);
 			setListViewData(bclassname,classList);
 		} else if ("外国菜谱".equals(bclassname)) {
 			desc.setText(str[1]);
+			this.imageLoader.displayImage(this.data[1], imageView);
 			setListViewData(bclassname,classList);
 		} else if ("菜谱大全".equals(bclassname)) {
 			desc.setText(str[8]);
+			this.imageLoader.displayImage(this.data[8], imageView);
 			setListViewData(bclassname,classList);
 		} else if ("营养健康".equals(bclassname)) {
 			desc.setText(str[4]);
+			this.imageLoader.displayImage(this.data[4], imageView);
 			setListViewData(bclassname,classList);
 		} else if ("烘焙".equals(bclassname)) {
 			desc.setText(str[3]);
+			this.imageLoader.displayImage(this.data[3], imageView);
 			setListViewData(bclassname,classList);
 		}else if ("厨房百科".equals(bclassname)) {
 			desc.setText(str[2]);
+			this.imageLoader.displayImage(this.data[2], imageView);
 			setListViewData(bclassname,classList);
 		} else if ("人群膳食".equals(bclassname)) {
 			desc.setText(str[4]);
+			this.imageLoader.displayImage(this.data[4], imageView);
 			setListViewData(bclassname,classList);
 		}else if ("功能性调理".equals(bclassname)) {
 			desc.setText(str[5]);
+			this.imageLoader.displayImage(this.data[5], imageView);
 			setListViewData(bclassname,classList);
 		} else if ("疾病调理".equals(bclassname)) {
 			desc.setText(str[6]);
+			this.imageLoader.displayImage(this.data[6], imageView);
 			setListViewData(bclassname,classList);
 		} else if ("脏腑调理".equals(bclassname)) {
 			desc.setText(str[7]);
+			this.imageLoader.displayImage(this.data[7], imageView);
 			setListViewData(bclassname,classList);
 		}
 	}
@@ -153,6 +183,7 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 			loadfinish = true;
 		}    	
     };
+	private ImageView imageView;
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,

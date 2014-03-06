@@ -4,17 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.meishijie.dao.INewsClassDao;
-import com.meishijie.dao.INewsContentDao;
-import com.meishijie.dao.impl.NewsClassDaoImpl;
-import com.meishijie.dao.impl.NewsContentDaoImpl;
-import com.meishijie.entity.NewsClass;
-import com.meishijie.entity.NewsContent;
-import com.meishijie.main.R;
-import com.meishijie.other.MyScrollView;
-import com.meishijie.other.PullToRefreshView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +18,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.meishijie.dao.INewsClassDao;
+import com.meishijie.dao.INewsContentDao;
+import com.meishijie.dao.impl.NewsClassDaoImpl;
+import com.meishijie.dao.impl.NewsContentDaoImpl;
+import com.meishijie.entity.NewsClass;
+import com.meishijie.entity.NewsContent;
+import com.meishijie.main.R;
+import com.meishijie.other.MyScrollView;
+import com.meishijie.other.PullToRefreshView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class IndexActivity extends Activity {
 	
@@ -65,11 +65,20 @@ public class IndexActivity extends Activity {
 	private TextView setting;
 	private ImageView search;
 	
+	private ImageLoader imageLoader ;
+	
+	private int[] image_ids = new int[]{R.drawable.zhcx_img_94x96,R.drawable.rqss_img_94x96,
+			R.drawable.gnxtl_img_94x96,R.drawable.cfbk_img_94x96,R.drawable.wgcp_img_94x96,
+			R.drawable.hb_img_94x96,R.drawable.jbtl_img_94x96,R.drawable.zftl_img_94x96,
+			R.drawable.jccp_img_94x96,R.drawable.yyjk_img_94x96};
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.index);
+		
+		this.imageLoader = ImageLoader.getInstance();
 		
 		initViewPager();
 		initView();
@@ -99,7 +108,7 @@ public class IndexActivity extends Activity {
 		for(int i=0;i<newsContents.size();i++){	
 			imageView = new ImageView(getApplicationContext());
 			Log.i("jky",newsContents.get(i).getNewsphoto());
-			imageView.setImageResource(R.drawable.content_nopic);
+			this.imageLoader.displayImage(newsContents.get(i).getNewsphoto(), imageView);
 			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 			images.add(imageView);
 		}
@@ -153,6 +162,7 @@ public class IndexActivity extends Activity {
 			TextView title = (TextView) view.findViewById(R.id.title);
 			TextView unit = (TextView) view.findViewById(R.id.unit);
 			
+			typeImage.setImageResource(image_ids[i]);
 			title.setText(data.get(i).getBclassname());
 			
 			//获取小类类别名称
@@ -263,11 +273,11 @@ public class IndexActivity extends Activity {
 				break;
 
 			case R.id.setting:
-	
+				startActivity(new Intent(IndexActivity.this, SettingsActivity.class));
 				break;
 
 			case R.id.search:
-	
+				startActivity(new Intent(IndexActivity.this,SearchActivity.class));
 				break;
 			}
 		}

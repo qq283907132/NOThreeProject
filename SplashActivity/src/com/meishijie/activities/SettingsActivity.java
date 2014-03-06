@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TableRow;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -106,7 +107,7 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 			
 			break;
 		case R.id.data_packet_download:
-			
+			startActivity(new Intent(this,DownloadDataActivity.class));
 			break;
 		case R.id.not_load_data_in_two_three:
 			
@@ -127,7 +128,14 @@ public class SettingsActivity extends SherlockActivity implements OnClickListene
 			
 			break;
 		case R.id.invite_friends_download:
-			
+			OnekeyShare oks = new OnekeyShare();
+			// 分享时Notification的图标和文字
+			oks.setNotification(R.drawable.icon, 
+			getString(R.string.app_name));
+			oks.setText("正在使用美食杰");
+			oks.setImageUrl("http://static.meishij.net/n/images/iconhd_72.png");
+			oks.setSilent(true);
+			oks.show(this);
 			break;
 		case R.id.setting_actionbar_left_pic:
 			break;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/net_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fadingEdge="none"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/search_top"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/search_top_update" />
+
+            <GridView
+                android:id="@+id/search_gv"
+                android:layout_width="fill_parent"
+                android:layout_height="320dip"
+                android:gravity="center"
+                android:horizontalSpacing="10dp"
+                android:numColumns="3"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:paddingTop="8.0dip"
+                android:verticalSpacing="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

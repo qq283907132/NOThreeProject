@@ -15,11 +15,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import m.framework.ui.widget.viewpager.ViewPagerAdapter;
 import m.framework.ui.widget.viewpager.ViewPagerClassic;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Handler.Callback;
 import android.os.Message;
@@ -99,7 +102,7 @@ public class PlatformGridView extends LinearLayout implements
 		float scrH = cn.sharesdk.framework.utils.R.getScreenHeight(getContext());
 		float whR = scrW / scrH;
 		if (whR < 0.6) {
-			COLUMN_PER_LINE = 3;
+			COLUMN_PER_LINE = 4;
 			LINE_PER_PAGE = 3;
 		} else if (whR < 0.75) {
 			COLUMN_PER_LINE = 3;
@@ -407,7 +410,8 @@ public class PlatformGridView extends LinearLayout implements
 				listener = ((CustomerLogo) beans[position]).listener;
 			}
 
-			LinearLayout ll = new LinearLayout(context);
+			//LinearLayout ll = new LinearLayout(context);
+			LinearLayout ll = new CustomLearLayout(context, position);
 			ll.setOrientation(LinearLayout.VERTICAL);
 
 			ImageView iv = new ImageView(context);
@@ -423,7 +427,7 @@ public class PlatformGridView extends LinearLayout implements
 			ll.addView(iv);
 
 			TextView tv = new TextView(context);
-			tv.setTextColor(0xffffffff);
+			tv.setTextColor(0xffC3C3C3);
 			tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
 			tv.setSingleLine();
 			tv.setIncludeFontPadding(false);
@@ -438,6 +442,30 @@ public class PlatformGridView extends LinearLayout implements
 			ll.setOnClickListener(listener);
 
 			return ll;
+		}
+		
+		class CustomLearLayout extends LinearLayout{
+			
+			private int position;
+
+			public CustomLearLayout(Context context,int position) {
+				super(context);
+				this.position = position;
+			}
+
+			@Override
+			protected void dispatchDraw(Canvas canvas) {
+				super.dispatchDraw(canvas);
+				Paint paint = new Paint();   
+		           
+		        // 将边框设为黑色.   
+		        paint.setColor(android.graphics.Color.RED);   
+				canvas.drawLine(0, 0, this.getWidth() - 1, 0, paint);   
+			    canvas.drawLine(0, 0, 0, this.getHeight() - 1, paint);   
+			    canvas.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, this.getHeight() - 1, paint);   
+			    canvas.drawLine(0, this.getHeight() - 1, this.getWidth() - 1, this.getHeight() - 1, paint);  
+			}
+			
 		}
 
 		private Bitmap getIcon(Platform plat) {

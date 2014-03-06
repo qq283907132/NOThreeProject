@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ai_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fffffcfa" >
+
+    <!-- 滑动窗口不包含最上面和最下面的布局 -->
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0"
+        android:fadingEdge="none"
+        android:scrollbars="none" >
+
+        <!-- ScrollView下面的布局 -->
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" >
+
+            <!-- 跟上面的布局一样，就只是不包含最下面一个进度条 -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <!-- 用户头像信息部分的布局 -->
+
+                <RelativeLayout
+                    android:id="@+id/pic_linear"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f2ffffff" >
+
+                    <!-- 这个菜的主头图片 -->
+					<!-- android:scaleType="fitXY" 用src的时候一般用的上,屏幕适宽 -->
+                    <ImageView
+                        android:id="@+id/iv_newsphoto"
+                        android:scaleType="fitXY"
+                        android:contentDescription="这个菜的主头图片"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5.0dip"
+                        />
+                    <!-- 用户那个模块的布局 -->
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <!--  -->
+
+                        <TextView
+                            android:id="@+id/add_one"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+1"
+                            android:textColor="#F00"
+                            android:textSize="15.0sp"
+                            android:visibility="gone" />
+                        <!-- 赞  字的图片,默认是隐藏的 -->
+
+                        <ImageView
+                            android:id="@+id/zan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/zan"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/pic_layout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" >
+
+                            <RelativeLayout
+                                android:id="@+id/userinfo"
+                                android:layout_width="80.0dip"
+                                android:layout_height="wrap_content" >
+
+                                <!-- 用户名 -->
+
+                                <TextView
+                                    android:id="@+id/tv_writer"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="80.0dip"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="#80000000"
+                                    android:gravity="center"
+                                    android:maxLength="4"
+                                    android:paddingTop="11.0dip"
+                                    android:text="张三"
+                                    android:textColor="#FFF"
+                                    android:textSize="11.0sp" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical" >
+
+                                    <!-- 用户信息的头像布局 -->
+
+                                    <LinearLayout
+                                        android:layout_width="80.0dip"
+                                        android:layout_height="80.0dip"
+                                        android:background="@drawable/cp_auther_shadow"
+                                        android:paddingLeft="10.0dip"
+                                        android:paddingTop="10.0dip" >
+
+                                        <ImageView
+                                            android:id="@+id/iv_writerpic"
+                                            android:layout_width="60.0dip"
+                                            android:layout_height="60.0dip"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/avatar" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="40.0dip" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                            <!-- 做法、口味、难度、人数、烹饪 的布局,还未细布局 -->
+
+                            <LinearLayout
+                                android:id="@+id/desc"
+                                android:layout_width="fill_parent"
+                                android:layout_height="80.0dip"
+                                android:layout_gravity="bottom"
+                                android:layout_weight="1.0"
+                                android:background="#80000000"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingLeft="10dip"
+                                android:paddingTop="5dip" >
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="0"
+                                    android:orientation="vertical" >
+
+                                    <TextView
+                                        android:id="@+id/tv_gongyi"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="3dip"
+                                        android:text="做法：渣汁"
+                                        android:textColor="#FFF"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_makediff"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="3dip"
+                                        android:text="难度：初级入门"
+                                        android:textColor="#FFF"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_makepretime"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="准备：15分钟"
+                                        android:textColor="#FFF"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dip"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="20dip"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical" >
+
+                                    <TextView
+                                        android:id="@+id/tv_kouwei"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="3dip"
+                                        android:text="口味：果味"
+                                        android:textColor="#FFF"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_makeamount"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="3dip"
+                                        android:text="人数：2人份"
+                                        android:textColor="#FFF"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_maketime"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="烹饪：10分钟"
+                                        android:textColor="#FFF"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="35.0dip"
+                        android:src="@drawable/arrow_top_white" />
+                    <!-- android:progressDrawable="@drawable/progressbar_rectangle" -->
+
+                    <ProgressBar
+                        android:id="@+id/pb"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="5.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="5.0dip"
+                        android:indeterminateOnly="false"
+                        android:max="100"
+                        android:progress="0"
+                        
+                        android:visibility="gone" />
+                </RelativeLayout>
+                <!-- 用料上面的布局,还未布局 -->
+
+                <LinearLayout
+                    android:id="@+id/heat_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10.0dip" >
+
+                    <!-- 用料布局 -->
+
+                    <LinearLayout
+                        android:id="@+id/heat"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="horizontal" >
+
+                        <!-- 这里放用户头像下面的一个小布局用来显示 热量的多少，属于那种程度的热量菜品 -->
+
+                        <TextView
+                            android:id="@+id/tv_heat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="热量：1331.6大卡，属于较高热量菜品"
+                            android:textColor="#7C7C7D"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_small_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/small_arrow" />
+                </LinearLayout>
+                <!-- 用料模块 和 做法模块 上面的分割线 -->
+
+                <TextView
+                    android:id="@+id/heat_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0px"
+                    android:background="#ffdddddd" />
+                <!-- 包括用料模块 和 做法模块 -->
+
+                <LinearLayout
+                    android:id="@+id/content_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <!-- 用料模块 和 辅料模块 -->
+
+                    <LinearLayout
+                        android:id="@+id/middle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        <!-- 用料模块 -->
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/title_yl" />
+                        <!-- 用料模块下面的 食材布局，还等待去布局 -->
+
+                        <LinearLayout
+                            android:id="@+id/shicaipanel"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <!-- 这里要弄一个listview  里面的item要用gridView 因为是图标 加文字的 ，可以显示一个条目或是多个条目 -->
+
+                            <ListView
+                                android:id="@+id/lv_yongliao"
+                                android:layout_width="match_parent"
+                                android:layout_height="380dip" >
+                            </ListView>
+                        </LinearLayout>
+                        <!-- 辅料模块 和 调料模块，默认是隐藏的 -->
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <!-- 辅料模块，默认是隐藏的 -->
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5.0dip"
+                                android:orientation="horizontal"
+                                android:paddingLeft="10.0dip"
+                                android:paddingRight="10.0dip" >
+
+                                <LinearLayout
+                                    android:id="@+id/fuliao_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone" >
+
+                                    <TextView
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1.0"
+                                        android:paddingTop="3.0dip"
+                                        android:text="辅料: "
+                                        android:textColor="#ff666666"
+                                        android:textSize="16.0sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/fuliao"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical" />
+                            </LinearLayout>
+                            <!-- 调料模块 默认也是隐藏的(不显示的) -->
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:orientation="horizontal"
+                                android:paddingLeft="5.0dip"
+                                android:paddingRight="5.0dip" >
+
+                                <!-- android:visibility="gone" -->
+
+                                
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0"
+                                        android:paddingTop="3.0dip"
+                                        android:text="调料: "
+                                        android:textColor="#ff666666"
+                                        android:textSize="16.0sp" />
+                                
+                                <!-- 调料模块详细材料的布局 -->
+
+                                
+									<GridView
+									    android:id="@+id/gv_tiaoliao" 
+									    android:numColumns="2"
+									    android:layout_weight="1"
+									    android:horizontalSpacing="3dip"
+									    android:verticalSpacing="3dip"
+									    android:layout_width="0dip"
+									    android:layout_height="200dip">
+									</GridView>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!-- 用料模块 和 做法模块 之间的分割线,只是包含在用料模块里面 -->
+
+                        <ImageView
+                            android:layout_width="fill_parent"
+                            android:layout_height="1.0px"
+                            android:layout_marginLeft="10.0dip"
+                            android:layout_marginRight="10.0dip"
+                            android:layout_marginTop="10.0dip"
+                            android:background="#ffdddddd" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/kitchen"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone" >
+
+                        <ImageView
+                            android:id="@+id/kitchen_title"
+                            android:layout_width="80.0dip"
+                            android:layout_height="50.0dip"
+                            android:scaleType="fitXY" />
+
+                        <LinearLayout
+                            android:id="@+id/kitchen_layout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+                    <!-- 包含整个做法模块 -->
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <!-- 只包含做法那一条的布局 -->
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal" >
+
+                            <ImageView
+                                android:id="@+id/make_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/title_zf" />
+
+                            <TextView
+                                android:id="@+id/tv_lookbigmap"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0"
+                                android:gravity="right"
+                                android:clickable="true"
+                                android:onClick="lookbigmap"
+                                android:paddingRight="10.0dip"
+                                android:text="点击步骤看大图"
+                                android:textColor="#ff999999"
+                                android:textSize="11.0sp" />
+                        </LinearLayout>
+                        <!-- 做法模块下面的详细做法的布局 -->
+
+                        <LinearLayout
+                            android:id="@+id/make"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10.0dip"
+                            android:orientation="vertical"
+                            android:paddingRight="8.0dip" >
+
+                            <!-- 这里应该也是一个listview  其下每一项对应一个图标和一个或几行文字介绍,我就先用liearlayout,里面包含几个TextView和imageview代替下 -->
+							<ListView 
+							    android:id="@+id/lv_make"
+							    android:layout_width="fill_parent"
+							    android:layout_height="fill_parent"
+							    android:padding="3dip"
+							    ></ListView>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- 图片的集合 -->
+
+                    <LinearLayout
+                        android:id="@+id/other"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        
+						<ImageView 
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:background="@drawable/title_prjq"
+						    />
+						<ListView 
+						    android:layout_width="match_parent"
+						    android:layout_height="200dip"
+						    android:id="@+id/lv_prjq"
+						    android:text="烹饪技巧的详细信息....."
+						    />
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- 分享模块跟做法模块之间的分割线 -->
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0px"
+                    android:layout_marginLeft="10.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:layout_marginTop="10.0dip"
+                    android:background="#ffdddddd" />
+                <!-- 分享这个模块布局  里面包含多少人上传、上传图片、上传摄像机 的布局 -->
+
+                <LinearLayout
+                    android:id="@+id/vote"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/title_fx" />
+
+                        <TextView
+                            android:id="@+id/text_vote"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:paddingRight="10.0dip"
+                            android:text="共0人上传"
+                            android:textColor="#ff999999"
+                            android:textSize="13.0sp" />
+                    </LinearLayout>
+                    <!-- 拍照上传的布局  ,分为2个布局，一个正常情况下，有网络，第二个是没有网络情况下显示  没有网络的图片标志，默认没有网络的布局是不能显示的 -->
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:orientation="vertical" >
+
+                        <!-- 没有网络时显示的图片 -->
+
+                        <LinearLayout
+                            android:id="@+id/img_nonet"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:visibility="gone" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20.0dip"
+                                android:layout_marginTop="20.0dip"
+                                android:src="@drawable/load_desc" />
+                        </LinearLayout>
+                        <!-- 拍照上传的布局 -->
+
+                        <LinearLayout
+                            android:id="@+id/img_main"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="10.0dip" >
+
+                            <!-- 等待用户传照片的布局，用户上传的照片就会放在这个布局里面 -->
+
+                            <LinearLayout
+                                android:id="@+id/img_content"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:orientation="horizontal" />
+                            <!-- 临时弄的一个拍照后显示相片的控件 -->
+                            <ImageView
+                                android:id="@+id/iv_pic"
+                                android:clickable="true"
+                                android:layout_width="71.0dip"
+                                android:layout_height="71.0dip"
+                                />
+
+                            <ImageView
+                                android:id="@+id/upload"
+                                android:onClick="camera"
+                                android:clickable="true"
+                                android:layout_width="71.0dip"
+                                android:layout_height="71.0dip"
+                                android:src="@drawable/upload_cp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="1.0px"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:layout_marginTop="10.0dip"
+                        android:background="#ffdddddd" />
+                </LinearLayout>
+                <!-- 评论那个模块 -->
+
+                <LinearLayout
+                    android:id="@+id/comment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50.0dip"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10.0dip"
+                        android:gravity="left"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/title_pl" />
+
+                        <LinearLayout
+                            android:id="@+id/comment_nonet"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:visibility="gone" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20.0dip"
+                                android:layout_marginTop="20.0dip"
+                                android:src="@drawable/load_desc" />
+                        </LinearLayout>
+                        <!-- 评论那2个字的下面那个布局(有一张图片和写了  说说我的看法… 这几个字的布局) -->
+
+                        <LinearLayout
+                            android:id="@+id/comment_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingLeft="10.0dip"
+                                android:paddingRight="10.0dip"
+                                android:paddingTop="10.0dip" >
+
+                                <ImageView
+                                    android:id="@+id/comment_head"
+                                    android:layout_width="40.0dip"
+                                    android:layout_height="40.0dip"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar" />
+
+                                <TextView
+                                    android:id="@+id/edt_pl"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/pl_bg"
+                                    android:hint="说说我的看法…"
+                                    android:paddingLeft="20.0dip"
+                                    android:paddingTop="9.0dip"
+                                    android:textSize="16.0sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/comment_list"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical" />
+
+                            <TextView
+                                android:id="@+id/to_comment"
+                                android:layout_width="fill_parent"
+                                android:layout_height="45.0dip"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="#ff999999"
+                                android:textSize="16.0sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- android:indeterminateDrawable="@drawable/progressbar" -->
+
+            <ProgressBar
+                android:id="@+id/content_pb"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </ScrollView>
+    <!-- 这个相对布局跟scrollView布局等级一样的，它的布局就是最上面的布局 -->
+
+    <RelativeLayout
+        android:id="@+id/ai_main_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topbar"
+        android:clickable="true"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:clickable="true"
+            android:onClick="iv_back"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="10.0dip"
+            android:src="@drawable/topbar_back"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="50.0dip"
+            android:paddingRight="50.0dip"
+            android:singleLine="true"
+            android:text="详细菜谱" />
+
+        <ImageView
+            android:id="@+id/play_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10.0dip"
+            android:src="@drawable/voice_icon" />
+    </RelativeLayout>
+    <!-- 这个相对布局跟上面跟scrollView的布局等级是一致的，是布局栏最下面的悬浮菜单 -->
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="60.0dip"
+        android:layout_alignParentBottom="true" >
+
+        <LinearLayout
+            android:id="@+id/bottom_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/index_bottombar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="60.0dip" >
+
+            <TextView
+                android:id="@+id/collects"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:layout_marginTop="9.0dip"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/index_collect_icon"
+                android:gravity="center"
+                android:tag="收藏"
+                android:text="收藏"
+                android:textColor="#fff"
+                android:textSize="10.0sp" />
+
+            <TextView
+                android:id="@+id/add_shoppinglist"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:layout_marginTop="9.0dip"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/content_shop_icon"
+                android:gravity="center"
+                android:tag="添加到购物清单"
+                android:text="购物清单"
+                android:textColor="#FFF"
+                android:textSize="10.0sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/share"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:layout_marginTop="9.0dip"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/content_share_icon"
+                android:gravity="center"
+                android:text="分享"
+                android:textColor="#FFF"
+                android:textSize="10.0sp" />
+
+            <TextView
+                android:id="@+id/more"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:layout_marginTop="9.0dip"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/content_more_icon"
+                android:gravity="center"
+                android:text="更多"
+                android:textColor="#FFF"
+                android:textSize="10.0sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="4.0dip"
+            android:src="@drawable/searchbtn" />
+    </RelativeLayout>
+
+    <!-- <include
+        android:layout_centerInParent="true"
+        layout="@layout/zan_hint" /> -->
+
+    <LinearLayout
+        android:id="@+id/big_pic"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" />
+
+</RelativeLayout>

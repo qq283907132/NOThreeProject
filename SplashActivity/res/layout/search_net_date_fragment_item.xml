@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+	<TextView 
+	    android:id="@+id/tv_data_fenlei"
+	    android:layout_width="60dip"
+	    android:layout_height="60dip"
+	    android:background="@drawable/shape_top_corner_no_bottom_line"
+	    android:gravity="center"/>
+</LinearLayout>
