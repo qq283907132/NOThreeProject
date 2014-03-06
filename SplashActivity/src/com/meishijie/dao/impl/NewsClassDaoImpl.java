@@ -98,6 +98,7 @@ public class NewsClassDaoImpl extends ContextWrapper implements INewsClassDao {
 				lists.add(newsClass);
 			}
 		}
+		db.close();
 		cursor.close();
 		return lists;
 	}
@@ -114,6 +115,7 @@ public class NewsClassDaoImpl extends ContextWrapper implements INewsClassDao {
 			newsClass.setName(cursor.getString(cursor.getColumnIndex("name")));
 			lists.add(newsClass);
 		}
+		db.close();
 		cursor.close();
 		return lists;
 	}

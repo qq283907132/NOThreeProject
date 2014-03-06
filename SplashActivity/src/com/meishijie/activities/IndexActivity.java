@@ -1,15 +1,9 @@
 package com.meishijie.activities;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.meishijie.dao.INewsClassDao;
 import com.meishijie.dao.INewsContentDao;
@@ -23,9 +17,6 @@ import com.meishijie.other.PullToRefreshView;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -46,20 +37,33 @@ public class IndexActivity extends Activity {
 	private List<View> dots;
 	private TextView big_title;
 	private TextView small_title;
+	
+	//
 	private LinearLayout linearLayout;
+	
 	private PullToRefreshView pullToRefreshView;
 	private MyScrollView msv;
 	//首页头部滑动图片
 	private List<NewsContent> newsContents;
-	//首页食品类别列表数据
+	//首页食品大类别列表数据
 	private List<NewsClass> data;
+	//首页食品小类别列表数据
 	private List<NewsClass> subClasses;
+	
 	private StringBuffer buff;
 	private ProgressBar topBar;
 	
 	private int oldPosition = 0;//上一次圆点位置
 	private int currentItem = 0; //当前页面
 	private ImageView imageView;
+	
+	//底部控件
+	private TextView singleInfo;
+	private TextView collection;
+	private TextView shopList;
+	private TextView latestScan;
+	private TextView setting;
+	private ImageView search;
 	
 	
 	@Override
@@ -69,9 +73,9 @@ public class IndexActivity extends Activity {
 		
 		initViewPager();
 		initView();
+		initBottomView();
 		
 	}
-	
 	private void initViewPager() {
 		
 		dots = new ArrayList<View>();
@@ -138,6 +142,7 @@ public class IndexActivity extends Activity {
 		//获取大类类别名称
 		INewsClassDao classDao = new NewsClassDaoImpl(this);
 		data = classDao.getSuperClassName();
+		
 		//添加布局
 		linearLayout = (LinearLayout) findViewById(R.id.main_list);
 		
@@ -167,10 +172,7 @@ public class IndexActivity extends Activity {
 		
 		pullToRefreshView = (PullToRefreshView) findViewById(R.id.refreshView);
 		msv = (MyScrollView)findViewById(R.id.msv);
-		pullToRefreshView.sv = msv;
-		
-		
-		
+		pullToRefreshView.sv = msv;	
 	}
 	
 	
@@ -219,65 +221,55 @@ public class IndexActivity extends Activity {
 		}
 	}
 	
+	private void initBottomView() {
+		singleInfo = (TextView) findViewById(R.id.single_info);
+		collection = (TextView) findViewById(R.id.single_collection);
+		shopList = (TextView) findViewById(R.id.shop_list);
+		latestScan = (TextView) findViewById(R.id.latest_scan);
+		setting = (TextView) findViewById(R.id.setting);
+		search = (ImageView) findViewById(R.id.search);
+		
+		singleInfo.setOnClickListener(new MyOnClickListener());
+		collection.setOnClickListener(new MyOnClickListener());
+		shopList.setOnClickListener(new MyOnClickListener());
+		latestScan.setOnClickListener(new MyOnClickListener());
+		setting.setOnClickListener(new MyOnClickListener());
+		search.setOnClickListener(new MyOnClickListener());
+	}
+	
 	/**
-	 * 异步加载图片
+	 * 底部textview控件的监听事件
 	 * @author Administrator
 	 *
 	 */
-	private class LoadImageTask extends AsyncTask<String, Integer, byte[]>{
+	private class MyOnClickListener implements OnClickListener{
 
 		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			topBar.setVisibility(View.VISIBLE);
-		}
-		
-		@Override
-		protected byte[] doInBackground(String... params) {
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpGet httpGet = new HttpGet(params[0]);
-			byte[] result = null;//图片的所有内容
-			InputStream inputStream = null;
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			try {
-				HttpResponse httpResponse = httpClient.execute(httpGet);
-				long file_length = httpResponse.getEntity().getContentLength();// 文件总长度
-				int total_length = 0;
-				byte[] data = new byte[1024];
-				int len = 0;
-				if (httpResponse.getStatusLine().getStatusCode() == 200) {
-					inputStream = httpResponse.getEntity().getContent();
-					while ((len = inputStream.read(data)) != -1) {
-						total_length += len;
-						int progress_value = (int) ((total_length / (float) file_length) * 100);
-						publishProgress(progress_value);//发布刻度单位
-						outputStream.write(data, 0, len);
-					}
-				}
-				result = outputStream.toByteArray();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				httpClient.getConnectionManager().shutdown();
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.single_info:
+				
+				break;
+			case R.id.single_collection:
+				
+				break;
+
+			case R.id.latest_scan:
+	
+				break;
+
+			case R.id.shop_list:
+	
+				break;
+
+			case R.id.setting:
+	
+				break;
+
+			case R.id.search:
+	
+				break;
 			}
-			return result;
 		}
-		
-		@Override
-		protected void onPostExecute(byte[] result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			Bitmap bitmap = BitmapFactory.decodeByteArray(result, 0, result.length);
-			imageView.setImageBitmap(bitmap);
-			topBar.setVisibility(View.GONE);
-		}
-
-		@Override
-		protected void onProgressUpdate(Integer... values) {
-			super.onProgressUpdate(values);
-			topBar.setProgress(values[0]);
-		}
-		
 	}
-
 }

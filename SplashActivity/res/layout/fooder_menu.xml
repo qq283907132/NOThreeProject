@@ -41,9 +41,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
                 android:padding="10.0dip"
-                android:src="@drawable/topbar_back" 
-                android:contentDescription="@string/app_name"/>
+                android:src="@drawable/topbar_back" />
 
             <ImageView
                 android:id="@+id/griddle"
@@ -51,36 +51,36 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
                 android:padding="10.0dip"
-                android:src="@drawable/topbar_filter_icon" 
-                android:contentDescription="@string/app_name"/>
+                android:src="@drawable/topbar_filter_icon" />
         </RelativeLayout>
     </FrameLayout>
-    <HorizontalScrollView 
+
+    <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="50.0dip"
-        android:layout_weight="0"
-        android:layout_gravity="bottom">
-        
-        <LinearLayout 
+        android:layout_gravity="bottom"
+        android:layout_weight="0" 
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
             android:id="@+id/bottom_menu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            
-            <TextView 
-                android:layout_width="40.dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="40.dip"
-                android:text="全部"> 
+                android:text="全部"
+                android:textColor="#ffc90000"
+                android:padding="10dip"
+                android:textSize="18.0sp" >
             </TextView>
-            <TextView 
-                android:layout_width="40.dip"
-                android:layout_height="40.dip"
-                android:background="@drawable/red_fill"
-                android:text="热菜"> 
-            </TextView>
-            
         </LinearLayout>
-        
     </HorizontalScrollView>
+
 </LinearLayout>

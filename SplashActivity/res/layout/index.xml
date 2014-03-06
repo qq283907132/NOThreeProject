@@ -10,6 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#fffffcfa"
+        android:paddingBottom="50dip"
         android:orientation="vertical" >
 
         <com.meishijie.other.MyScrollView
@@ -170,6 +171,7 @@
                 android:paddingRight="60.0dip" >
 
                 <TextView
+                    android:id="@+id/single_info"
                     android:layout_width="0dp"
                     android:layout_height="50.0dip"
                     android:layout_marginLeft="10dip"
@@ -183,6 +185,7 @@
                     android:textSize="10.0sp" />
 
                 <TextView
+                    android:id="@+id/single_collection"
                     android:layout_width="0dp"
                     android:layout_height="50.0dip"
                     android:layout_marginLeft="10dip"
@@ -196,6 +199,7 @@
                     android:textSize="10.0sp" />
 
                 <TextView
+                    android:id="@+id/shop_list"
                     android:layout_width="0dp"
                     android:layout_height="50.0dip"
                     android:layout_marginLeft="10dip"
@@ -209,6 +213,7 @@
                     android:textSize="10.0sp" />
 
                 <TextView
+                    android:id="@+id/latest_scan"
                     android:layout_width="0dp"
                     android:layout_height="50.0dip"
                     android:layout_marginLeft="10dip"
@@ -222,6 +227,7 @@
                     android:textSize="10.0sp" />
 
                 <TextView
+                    android:id="@+id/setting"
                     android:layout_width="0dp"
                     android:layout_height="50.0dip"
                     android:layout_marginLeft="10dip"

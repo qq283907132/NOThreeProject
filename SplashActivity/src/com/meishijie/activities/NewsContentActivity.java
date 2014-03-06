@@ -12,7 +12,6 @@ import com.meishijie.main.R;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -43,12 +43,24 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 	private TextView title;
 	private TextView desc;
 	private List<NewsContent> contentList;
+	private LinearLayout linearLayout;
 	
-
+	private String[] str = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fooder_menu);
+		
+		str = new String[]{"菜系是在取材、刀工、调制等方面,有鲜明地方特色具备一定规模体系的菜肴流派。",
+				"全球各地都有迥异的饮食文化,和不同的食风食俗,体现了人类文明的多样性化。",
+				"厨房虽小,门道多多。掌握了一个技巧就能提高一份效率获得一些乐趣。",
+				"烘焙又称烘烤,是在食材燃点之下通过干热方式使其脱水变干变硬变熟的工艺。",
+				"营养物质的摄取是所有每个人生命所必要的物质基础，有共性也有特殊性。",
+				"利用食物的性能稳定人体内环境,与自然环境相适应,才能保持健康,祛病延年。",
+				"民以食为天,合理的营养能够促进健康,反之则引起疾病。",
+				"五脏相互协调依赖制约,生克制化,保持动态平衡,才能保证生理活动顺利进行。",
+				"家常菜,是中国菜的源头,也是地方风味菜系的组成基础。"};
 		
 		total = new ArrayList<NewsContent>();
 		
@@ -56,13 +68,17 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 		bclassname = intent.getStringExtra("bclassname");
 		classList = (List<NewsClass>) intent.getSerializableExtra("classList");
 		
+		linearLayout = (LinearLayout) findViewById(R.id.bottom_menu);
+		
 		title = (TextView) findViewById(R.id.title);
 		title.setText(bclassname);
-		desc = (TextView) findViewById(R.id.desc);
+		
+		
 		
 		listView = (ListView) findViewById(R.id.fooder_menu_list);
 		header = LayoutInflater.from(this).inflate(R.layout.list_header,
 				listView, false);
+		desc = (TextView) header.findViewById(R.id.desc);
 		listView.addHeaderView(header);
 		footer = LayoutInflater.from(this).inflate(R.layout.list_more,
 				listView, false);
@@ -75,28 +91,48 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 
 		listView.removeFooterView(footer);
 		listView.setOnScrollListener(this);
+		
+		
+		for(int i=0;i<classList.size();i++){
+			View layout = LayoutInflater.from(this).inflate(R.layout.fooder_bottom_menu, null);
+			TextView content = (TextView) layout.findViewById(R.id.textview);
+			content.setText(classList.get(i).getName());
+			linearLayout.addView(layout);
+		}
+		
 	}
 
 	private void initView(String bclassname, List<NewsClass> classList) {
 		if ("中华菜系".equals(bclassname)) {
+			Log.i("jky",str[0] );
+			desc.setText(str[0]);
 			setListViewData(bclassname,classList);
 		} else if ("外国菜谱".equals(bclassname)) {
+			desc.setText(str[1]);
 			setListViewData(bclassname,classList);
 		} else if ("菜谱大全".equals(bclassname)) {
+			desc.setText(str[8]);
 			setListViewData(bclassname,classList);
 		} else if ("营养健康".equals(bclassname)) {
+			desc.setText(str[4]);
 			setListViewData(bclassname,classList);
 		} else if ("烘焙".equals(bclassname)) {
+			desc.setText(str[3]);
 			setListViewData(bclassname,classList);
 		}else if ("厨房百科".equals(bclassname)) {
+			desc.setText(str[2]);
 			setListViewData(bclassname,classList);
 		} else if ("人群膳食".equals(bclassname)) {
+			desc.setText(str[4]);
 			setListViewData(bclassname,classList);
 		}else if ("功能性调理".equals(bclassname)) {
+			desc.setText(str[5]);
 			setListViewData(bclassname,classList);
 		} else if ("疾病调理".equals(bclassname)) {
+			desc.setText(str[6]);
 			setListViewData(bclassname,classList);
 		} else if ("脏腑调理".equals(bclassname)) {
+			desc.setText(str[7]);
 			setListViewData(bclassname,classList);
 		}
 	}
@@ -158,6 +194,12 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 	
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		return super.onKeyDown(keyCode, event);
+		
 	}
 	
 	
