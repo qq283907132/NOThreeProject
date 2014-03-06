@@ -30,17 +30,6 @@
                     android:contentDescription="@string/app_name"
                     android:scaleType="fitXY" />
 
-                <ProgressBar
-                    android:id="@+id/pb"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="5.0dip"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="5.0dip"
-                    android:indeterminateOnly="false"
-                    android:max="100"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/progressbar_rectangle" />
             </RelativeLayout>
 
             <LinearLayout

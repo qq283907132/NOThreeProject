@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.meishijie.entity.NewsContent;
 import com.meishijie.main.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class SearchContentListViewAdapter extends BaseAdapter {
 
@@ -19,9 +20,11 @@ public class SearchContentListViewAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	//查询数据对象的集合
 	private List<NewsContent> contentList;
+	private ImageLoader imageLoader;
 	public SearchContentListViewAdapter(Context context,List<NewsContent> contentList) {
 		this.context = context;
 		this.inflater = LayoutInflater.from(context);
+		this.imageLoader = ImageLoader.getInstance();
 		setData(contentList);
 	}
 
@@ -65,12 +68,14 @@ public class SearchContentListViewAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		viewHolder.image.setImageResource(R.drawable.nopic);
-		viewHolder.title.setText(contentList.get(position).getTitle());
-		viewHolder.kouwei.setText(contentList.get(position).getKouwei());
-		viewHolder.gongyi.setText(contentList.get(position).getGongyi());
-		viewHolder.nandu.setText(contentList.get(position).getMake_diff());
-		viewHolder.maketime.setText(contentList.get(position).getMake_time());
+		NewsContent conn = contentList.get(position);
+		
+		imageLoader.displayImage(conn.getNewsphoto(), viewHolder.image);
+		viewHolder.title.setText(conn.getTitle());
+		viewHolder.kouwei.setText(conn.getKouwei());
+		viewHolder.gongyi.setText(conn.getGongyi());
+		viewHolder.nandu.setText(conn.getMake_diff());
+		viewHolder.maketime.setText(conn.getMake_time());
 		
 		return convertView;
 	}

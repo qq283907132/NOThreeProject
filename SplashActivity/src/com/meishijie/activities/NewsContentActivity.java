@@ -22,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -119,6 +121,17 @@ public class NewsContentActivity extends Activity implements OnScrollListener {
 			content.setText(classList.get(i).getName());
 			linearLayout.addView(layout);
 		}
+		
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(NewsContentActivity.this,ItemActivity.class);
+				intent.putExtra("id", contentList.get(position).getId());
+				startActivity(intent);
+			}
+		});
 		
 	}
 
